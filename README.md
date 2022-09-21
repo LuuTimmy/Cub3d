@@ -13,4 +13,4 @@ Sacha:
 
  - le truc \n entre dans la map
 
- max NSWE
+ - pt ne pas avoir double erreur map

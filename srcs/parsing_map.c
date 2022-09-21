@@ -21,16 +21,14 @@ int	verif_map2(t_data *d, int i, int j, int len)
 	return (1);
 }
 
-int	verif_map(t_data *data, t_hero *hero)
+int	verif_map(t_data *data, t_hero *hero, int len)
 {
 	int	i;
 	int	j;
-	int	len;
+	int isplayer;
 
 	i = 0;
-	len = 0;
-	while (data->map[len])
-		len++;
+	isplayer = 0;
 	while (data->map[i])
 	{	
 		j = 0;
@@ -40,11 +38,13 @@ int	verif_map(t_data *data, t_hero *hero)
 				return (0);
 			if (data->map[i][j] == 32)
 				data->map[i][j] = '1';
-			put_hero(data, hero, i, j);
+			isplayer += put_hero(data, hero, i, j);
 			j++;
 		}
 		i++;
 	}
+	if (!isplayer)
+		return (ft_error_int("Error: not player in the map", 0));
 	return (1);
 }
 
@@ -109,8 +109,10 @@ void	*parsing_map(t_data *data, char **map_temp, t_hero *hero)
 		free_split(map_temp);
 		return (ft_error_char("Error: malloc failed"));
 	}
+	while (data->map[len])
+		len++;
 	invert_map(data);
-	if (!verif_map(data, hero))
+	if (!verif_map(data, hero, len))
 		return (NULL);
 	return (data);
 }
