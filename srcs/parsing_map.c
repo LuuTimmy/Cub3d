@@ -1,53 +1,36 @@
 #include "../cub3D.h"
-#include "so_long/so_long.h"
 
-int verif_map2(t_data *data, int i, int j, int len)
+int	verif_map2(t_data *d, int i, int j, int len)
 {
-    if (!verifset(data->map[i][j], " 01NSEW"))
-		return (0);
-    if ((i == 0 || j == 0 || i == len - 1 || j == ft_strlen(data->map[i]) - 1)
-		&& !verifset(data->map[i][j], " 1"))
-		return (0);
-    if (data->map[i][j] == ' ')
+	if (!verifset(d->map[i][j], " 01NSEW"))
+		return (ft_error_int("Error: wrong character", 0));
+	if ((i == 0 || j == 0 || i == len - 1 || j == ft_strlen(d->map[i]) - 1)
+		&& !verifset(d->map[i][j], " 1"))
+		return (ft_error_int("Error: The card must be closed with walls", 0));
+	if (d->map[i][j] == ' ')
 	{
-		if (i > 0 && !verifset(data->map[i - 1][j], " 1"))
-			return (0);
-		if (i < len - 1 && !verifset(data->map[i + 1][j], " 1"))
-			return (0);
-		if (j > 0 && !verifset(data->map[i][j - 1], " 1"))
-			return (0);
-		if (j < ft_strlen(data->map[i]) - 1 && !verifset(data->map[i][j + 1], "1 "))
-			return (0);
+		if (i > 0 && !verifset(d->map[i - 1][j], " 1"))
+			return (ft_error_int("Error: map need to be close", 0));
+		if (i < len - 1 && !verifset(d->map[i + 1][j], " 1"))
+			return (ft_error_int("Error: map need to be close", 0));
+		if (j > 0 && !verifset(d->map[i][j - 1], " 1"))
+			return (ft_error_int("Error: map need to be close", 0));
+		if (j < ft_strlen(d->map[i]) - 1 && !verifset(d->map[i][j + 1], "1 "))
+			return (ft_error_int("Error: map need to be close", 0));
 	}
-    return (1);
+	return (1);
 }
 
-int put_hero(t_data *data, t_hero *hero, int i, int j)
+int	verif_map(t_data *data, t_hero *hero)
 {
-    if (!verifset(data->map[i][j], "NESW"))
-        return (0);
-    hero->pos_x = (double)j + 0.5;
-    hero->pos_y = (double)i + 0.5;
-    hero->dir_x = 0.0; 
-    hero->dir_y = 1.0;
-    hero->plane_x = 0.66;
-    hero->plane_y = 0;
-    data->hero = hero;
-    
-    data->map[i][j] = '0';
-    return (1);
-}
-
-int verif_map(t_data *data, t_hero *hero)
-{
-	int i;
-	int j;
-    int len;
+	int	i;
+	int	j;
+	int	len;
 
 	i = 0;
-    len = 0;
-    while (data->map[len])
-        len++;
+	len = 0;
+	while (data->map[len])
+		len++;
 	while (data->map[i])
 	{	
 		j = 0;
@@ -55,9 +38,9 @@ int verif_map(t_data *data, t_hero *hero)
 		{
 			if (!verif_map2(data, i, j, len))
 				return (0);
-            if (data->map[i][j] == 32)
-                data->map[i][j] = '1';
-            put_hero(data, hero, i, j);
+			if (data->map[i][j] == 32)
+				data->map[i][j] = '1';
+			put_hero(data, hero, i, j);
 			j++;
 		}
 		i++;
@@ -65,67 +48,69 @@ int verif_map(t_data *data, t_hero *hero)
 	return (1);
 }
 
-int     put_map2(t_data *data, char **map_temp, int len, int height)
+int	put_map2(t_data *d, char **map_temp, int len, int height)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (i < height)
-    {
-        data->map[i] = (char *)malloc(sizeof(char) * len + 1);
-        if (!data->map[i])
-            return (0);
-        data->map[i][len] = '\0';
-        ft_memset(data->map[i], 32, len);
-        if (map_temp[i][ft_strlen(map_temp[i]) - 1] == '\n')
-            ft_strlcpy_cub(data->map[i], map_temp[i], ft_strlen(map_temp[i]));
-        else
-            ft_strlcpy_cub(data->map[i], map_temp[i], ft_strlen(map_temp[i]) + 1);
-        i++;
-    }
-    return (1);
+	i = 0;
+	while (i < height)
+	{
+		d->map[i] = (char *)malloc(sizeof(char) * len + 1);
+		if (!d->map[i])
+			return (ft_error_int("Error: wrong malloc", 0));
+		d->map[i][len] = '\0';
+		ft_memset(d->map[i], 32, len);
+		if (map_temp[i][ft_strlen(map_temp[i]) - 1] == '\n')
+			ft_strlcpy_cub(d->map[i], map_temp[i], ft_strlen(map_temp[i]));
+		else
+			ft_strlcpy_cub(d->map[i], map_temp[i], ft_strlen(map_temp[i]) + 1);
+		i++;
+	}
+	return (1);
 }
 
-char    **put_map(t_data *data, char **map_temp)
+char	**put_map(t_data *data, char **map_temp)
 {
-    int i;
-    int len;
-    int width;
+	int	i;
+	int	len;
+	int	width;
 
-    i = 0;
-    len = 0;
-    width = 0;
-    while(map_temp[i])
-    {   
-        if (ft_strlen(map_temp[i]) > len)
-            len = ft_strlen(map_temp[i]);
-        width++; 
-        i++;
-    }
-    data->map = (char **)malloc(sizeof(char *) * (width + 1));
-    if (!data->map)
-        return (NULL);
-    data->map[width] = 0;
-    if (!put_map2(data, map_temp, len, width))
-        return (NULL);
-    return (data->map);
+	i = 0;
+	len = 0;
+	width = 0;
+	while (map_temp[i])
+	{
+		if (ft_strlen(map_temp[i]) > len)
+			len = ft_strlen(map_temp[i]);
+		width++;
+		i++;
+	}
+	data->map = (char **)malloc(sizeof(char *) * (width + 1));
+	if (!data->map)
+	{
+		free_split(data->map);
+		return (NULL);
+	}
+	data->map[width] = 0;
+	if (!put_map2(data, map_temp, len, width))
+		return (NULL);
+	return (data->map);
 }
 
-void    *parsing_map(t_data *data, char **map_temp, t_hero *hero)
+void	*parsing_map(t_data *data, char **map_temp, t_hero *hero)
 {
-    int i;
-    char *str;
-    int len;
+	int		i;
+	char	*str;
+	int		len;
 
-    data->map = put_map(data, map_temp);
-    if (!data->map)
-    {
-        free(map_temp);
-        return (NULL);
-    }
-    if (!verif_map(data, hero))
-        return (NULL);
-    return(data);
+	data->map = put_map(data, map_temp);
+	if (!data->map)
+	{
+		free_split(map_temp);
+		return (ft_error_char("Error: malloc failed"));
+	}
+	invert_map(data);
+	if (!verif_map(data, hero))
+		return (NULL);
+	return (data);
 }
-
-

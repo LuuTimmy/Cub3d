@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdelforg <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tluu <tluu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 13:48:02 by mdelforg          #+#    #+#             */
-/*   Updated: 2022/08/10 17:48:28 by mdelforg         ###   ########.fr       */
+/*   Updated: 2022/09/21 10:40:07 by tluu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
-#include "so_long/so_long.h"
 //				retirer so_long.h
 
 void	ft_camera_init(t_rcst *rcst)

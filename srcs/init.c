@@ -6,12 +6,11 @@
 /*   By: tluu <tluu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 17:59:52 by mdelforg          #+#    #+#             */
-/*   Updated: 2022/09/20 15:21:10 by tluu             ###   ########.fr       */
+/*   Updated: 2022/09/21 14:57:08 by tluu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
-#include "so_long/so_long.h"			// retirer
 
 void	ft_move_init(t_data *data, t_move *move)
 {
@@ -32,8 +31,8 @@ char	**ft_textures_tab(t_libx *libx)
 	tab = (char **)malloc(sizeof(char *) * 5);
 	if (!tab)
 		ft_error("Error: Malloc error");
-	tab[0] = libx->txtr_w_north;
-	tab[1] = libx->txtr_w_south;
+	tab[0] = libx->txtr_w_south;
+	tab[1] = libx->txtr_w_north;
 	tab[2] = libx->txtr_w_west;
 	tab[3] = libx->txtr_w_east;
 	tab[4] = NULL;
@@ -52,14 +51,16 @@ void	ft_textures_init(t_libx *libx)
 		libx->txtr[i].ptr = mlx_xpm_file_to_image(libx->mlx_ptr, tab_txtr[i],
 				&(libx->txtr[i].width), &(libx->txtr[i].height));
 		if (!libx->txtr[i].ptr)
+		{
+			free_split(tab_txtr);
 			ft_error("Error: mlx_xpm_file_to_image");
+		}
 		libx->txtr[i].addr = mlx_get_data_addr(libx->txtr[i].ptr,
 				&(libx->txtr[i].bits_ppxl), &(libx->txtr[i].sz_line),
 				&(libx->txtr[i].endian));
 		i++;
 	}
 	free_split(tab_txtr);
-	//free(tab_txtr);
 	return ;									// if (!txtr.ptr)
 }
 

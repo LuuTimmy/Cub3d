@@ -6,7 +6,7 @@
 /*   By: tluu <tluu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 11:12:20 by mdelforg          #+#    #+#             */
-/*   Updated: 2022/09/20 15:22:34 by tluu             ###   ########.fr       */
+/*   Updated: 2022/09/21 15:01:07 by tluu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <float.h>
 # include <stdlib.h>
 # include "mlx/mlx.h"
+# include <fcntl.h>
+# include "libft/libft.h"
 
 # define EXIT 53
 # define UP 13
@@ -158,19 +160,25 @@ int		ft_launch(t_data *data);
 
 /*						exit.c							*/
 void	ft_error(char *str);
+void	*ft_error_char(char *str);
+int		ft_error_int(char *str, int i);
 int		ft_close(t_data *data);
 
 /*						parsing							*/
+void	invert_map(t_data *data);
 char	**parse_file(char *file, t_data *data, t_hero *hero);
 char	**search_map_info(int fd, t_data *data, char **info);
-void    *parsing_map(t_data *data, char **map_temp, t_hero *hero);
+void	*parsing_map(t_data *data, char **map_temp, t_hero *hero);
 int		parse_texture(char *newline, char *line, char *info, t_libx *libx);
 size_t	ft_strlcpy_cub(char *dest, const char *src, size_t size);
 
 //parsing-utils;
+int		put_hero(t_data *data, t_hero *hero, int i, int j);
+int		verif_is_digit(char **str);
 size_t	ft_strlcpy_cub(char *dest, const char *src, size_t size);
-char	*ft_strtrim(char const *s1, char const *set);
 int		ft_atoi_v(const char *str, int *is_false);
 int		count_char(char *str, char c);
+
+char	*get_next_line(int fd);
 
 #endif

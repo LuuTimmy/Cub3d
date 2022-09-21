@@ -6,7 +6,7 @@
 #    By: tluu <tluu@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 16:56:01 by mdelforg          #+#    #+#              #
-#    Updated: 2022/09/20 15:45:27 by tluu             ###   ########.fr        #
+#    Updated: 2022/09/21 10:44:11 by tluu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,27 +21,21 @@ SRCS = srcs/main.c \
 	   srcs/texturing_utils.c \
 	   srcs/launch.c \
 	   srcs/exit.c \
-	   srcs/so_long/so_long.c \
-	   srcs/so_long/background.c \
-	   srcs/so_long/error.c \
-	   srcs/so_long/map_check.c \
-	   srcs/so_long/map_check_elem.c \
-	   srcs/so_long/map_init.c \
-	   srcs/so_long/move.c \
-	   srcs/so_long/gnl/get_next_line.c \
-	   srcs/so_long/gnl/get_next_line_sl.c \
-	   srcs/so_long/gnl/get_next_line_utils.c \
-	   srcs/so_long/libft/ft_bzero.c \
-	   srcs/so_long/libft/ft_calloc.c \
-	   srcs/so_long/libft/ft_memcpy.c \
-	   srcs/so_long/libft/ft_memset.c \
-	   srcs/so_long/libft/ft_strchr.c \
-	   srcs/so_long/libft/ft_strdup.c \
-	   srcs/so_long/libft/ft_strlen.c \
-	   srcs/so_long/libft/ft_split.c \
-	   srcs/so_long/libft/ft_strjoin.c \
-	   srcs/so_long/libft/ft_strncmp.c \
-	   srcs/so_long/libft/ft_substr.c \
+	   srcs/gnl/get_next_line.c \
+	   srcs/gnl/get_next_line_sl.c \
+	   srcs/gnl/get_next_line_utils.c \
+	   libft/ft_bzero.c \
+	   libft/ft_calloc.c \
+	   libft/ft_memcpy.c \
+	   libft/ft_memset.c \
+	   libft/ft_strchr.c \
+	   libft/ft_strdup.c \
+	   libft/ft_strlen.c \
+	   libft/ft_split.c \
+	   libft/ft_strjoin.c \
+	   libft/ft_strncmp.c \
+	   libft/ft_substr.c \
+	   libft/ft_strtrim.c \
 	   srcs/parsing.c \
 	   srcs/parsing_map.c \
 	   srcs/parsing_info.c \
@@ -60,20 +54,23 @@ RM		= rm -f
 LINKS = -L ./mlx -lmlx -framework OpenGL -framework AppKit
 
 $(NAME):	$(MLX) $(OBJS)
-				$(CC) $(CFLAGS)  -fsanitize=address $(OBJS) $(LINKS) -o $(NAME)
+				${MAKE} -C libft
+				$(CC) $(CFLAGS) $(OBJS) libft/libft.a $(LINKS) -o $(NAME)
 
 $(MLX):
-				make -C mlx
+			make -C mlx
 
 all:		$(NAME)
 
 exe:		all clean
 
 clean:
-				$(RM) $(OBJS)
+			make clean -C libft
+			$(RM) $(OBJS)
 
 fclean:		clean
-				$(RM) $(NAME)
+			make fclean -C libft
+			$(RM) $(NAME)
 
 re:			fclean all
 

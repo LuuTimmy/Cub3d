@@ -9,3 +9,8 @@ Sacha:
  - Init la map / retourner la map / remplacer pos-init par 0
  - Init t-hero
  - Init color du sol / plafond (pour dans ft-draw-line)
+
+
+ - le truc \n entre dans la map
+
+ max NSWE

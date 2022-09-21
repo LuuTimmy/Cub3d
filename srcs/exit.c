@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdelforg <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tluu <tluu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 16:07:48 by mdelforg          #+#    #+#             */
-/*   Updated: 2022/08/10 18:01:52 by mdelforg         ###   ########.fr       */
+/*   Updated: 2022/09/21 14:11:32 by tluu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,6 @@ void	ft_free_tab(char **tab)
 	return ;
 }
 
-void	ft_free_txtr(t_libx *libx)
-{
-	int	i;
-
-	i = 0;
-	while (i < 4)
-	{
-		mlx_destroy_image(libx->mlx_ptr, libx->txtr[i].ptr);
-		i++;
-	}
-	return ;
-}
-
 void	ft_error(char *str)
 {
 	printf("%s\n", str);
@@ -46,12 +33,23 @@ void	ft_error(char *str)
 	return ;
 }
 
+void	*ft_error_char(char *str)
+{
+	printf("%s\n", str);
+	return (NULL);
+}
+
+int	ft_error_int(char *str, int i)
+{
+	printf("%s\n", str);
+	return (i);
+}
+
 int	ft_close(t_data *data)
 {
 	t_libx	*libx;
 
 	libx = data->libx;
-	ft_free_txtr(libx);
 	mlx_destroy_image(libx->mlx_ptr, libx->img->ptr);
 	ft_free_tab(data->map);
 	mlx_do_key_autorepeatoff(libx->mlx_ptr);

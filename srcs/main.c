@@ -6,12 +6,30 @@
 /*   By: tluu <tluu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 17:59:06 by mdelforg          #+#    #+#             */
-/*   Updated: 2022/09/20 15:46:36 by tluu             ###   ########.fr       */
+/*   Updated: 2022/09/21 15:14:36 by tluu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
-#include "so_long/so_long.h"
+
+void	invert_map(t_data *data)
+{
+	int		len;
+	int		i;
+	char	*temp;
+
+	len = 0;
+	while (data->map[len])
+		len++;
+	i = 0;
+	while (i < len / 2)
+	{
+		temp = data->map[i];
+		data->map[i] = data->map[len - i - 1];
+		data->map[len - i - 1] = temp;
+		i++;
+	}
+}
 
 int	main(int ac, char **av)
 {
@@ -25,8 +43,7 @@ int	main(int ac, char **av)
 		return (1);
 	ft_move_init(&data, &move);
 	ft_mlx_init(&data, &libx, &img);
-	if (!parse_file(av[1], &data, &hero))
-		ft_error("Error: Map error");
+	data.map = parse_file(av[1], &data, &hero);
 	if (!data.map)
 		ft_error("Error: Map error du lol");
 	ft_textures_init(&libx);
