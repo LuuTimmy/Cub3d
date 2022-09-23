@@ -48,7 +48,7 @@ char	*putmap2(char *line, char *fline, int *t)
 	return (fline);
 }
 
-char	**putmap(t_data *data, int fd, char *fline)
+char	**putmap(int fd, char *fline)
 {
 	int		t;
 	int		temp;
@@ -105,7 +105,7 @@ char	**search_map_info(int fd, t_data *data, char **info)
 	}
 	if (!verif_info(data->libx))
 		return (ft_error_char("Error: miss information"));
-	map_temp = putmap(data, fd, line);
+	map_temp = putmap(fd, line);
 	if (!map_temp)
 		return (NULL);
 	return (map_temp);

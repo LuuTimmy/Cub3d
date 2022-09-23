@@ -31,7 +31,6 @@ unsigned int	parse_color(char **color_split)
 
 int	put_color(char *color_rgb, unsigned int *color)
 {
-	int		i;
 	char	**color_split;
 
 	if (nword(color_rgb, ',') != 3 || count_char(color_rgb, ',' != 2))
@@ -52,7 +51,6 @@ int	put_color(char *color_rgb, unsigned int *color)
 int	parse_texture(char *newline, char *line, char *info, t_libx *lx)
 {
 	int		temp;
-	t_libx	*libx;
 
 	if (nword(line, 32) != 2)
 		return (0);

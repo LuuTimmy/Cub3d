@@ -6,7 +6,7 @@
 #    By: tluu <tluu@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 16:56:01 by mdelforg          #+#    #+#              #
-#    Updated: 2022/09/23 12:58:33 by tluu             ###   ########.fr        #
+#    Updated: 2022/09/23 14:25:44 by tluu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ OBJS = $(SRCS:.c=.o)
 CC		= gcc
 RM		= rm -f
 
-#CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 
 LINKS = -L ./mlx -lmlx -framework OpenGL -framework AppKit
 

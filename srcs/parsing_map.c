@@ -1,6 +1,6 @@
 #include "../cub3D.h"
 
-int	verif_map2(t_data *d, int i, int j, int len)
+int	verif_map2(t_data *d, unsigned int i, unsigned int j, unsigned int len)
 {
 	if (!verifset(d->map[i][j], " 01NSEW"))
 		return (ft_error_int("Error: wrong character", 0));
@@ -34,7 +34,7 @@ int	verif_map(t_data *data, t_hero *hero, int len)
 		j = 0;
 		while (data->map[i][j])
 		{
-			if (!verif_map2(data, i, j, len))
+			if (!verif_map2(data, (size_t)i, (size_t)j, (size_t)len))
 				return (0);
 			if (data->map[i][j] == 32)
 				data->map[i][j] = '1';
@@ -71,9 +71,9 @@ int	put_map2(t_data *d, char **map_temp, int len, int height)
 
 char	**put_map(t_data *data, char **map_temp)
 {
-	int	i;
-	int	len;
-	int	width;
+	int		i;
+	size_t	len;
+	int		width;
 
 	i = 0;
 	len = 0;
@@ -99,10 +99,9 @@ char	**put_map(t_data *data, char **map_temp)
 
 void	*parsing_map(t_data *data, char **map_temp, t_hero *hero)
 {
-	int		i;
-	char	*str;
 	int		len;
 
+	len = 0;
 	data->map = put_map(data, map_temp);
 	if (!data->map)
 	{
