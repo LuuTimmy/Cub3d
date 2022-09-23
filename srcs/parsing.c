@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tluu <tluu@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/23 14:29:16 by tluu              #+#    #+#             */
+/*   Updated: 2022/09/23 14:29:17 by tluu             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3D.h"
 
 int	verif_extension(char *file)
@@ -7,7 +19,7 @@ int	verif_extension(char *file)
 
 	extension = ".cub";
 	file_extension = file + (ft_strlen(file) - ft_strlen(extension));
-	if (ft_strncmp(file_extension, extension, ft_strlen(extension)) != 0) 
+	if (ft_strncmp(file_extension, extension, ft_strlen(extension)) != 0)
 		return (0);
 	return (1);
 }

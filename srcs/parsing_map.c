@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_map.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tluu <tluu@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/23 14:29:27 by tluu              #+#    #+#             */
+/*   Updated: 2022/09/23 14:29:28 by tluu             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3D.h"
 
 int	verif_map2(t_data *d, unsigned int i, unsigned int j, unsigned int len)
@@ -25,7 +37,7 @@ int	verif_map(t_data *data, t_hero *hero, int len)
 {
 	int	i;
 	int	j;
-	int isplayer;
+	int	isplayer;
 
 	i = 0;
 	isplayer = 0;

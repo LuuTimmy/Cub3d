@@ -11,6 +11,4 @@ Sacha:
  - Init color du sol / plafond (pour dans ft-draw-line)
 
 
- - le truc \n entre dans la map
-
- - pt ne pas avoir double erreur map
+//NORMI ERROR
