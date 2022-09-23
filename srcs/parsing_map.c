@@ -112,6 +112,7 @@ void	*parsing_map(t_data *data, char **map_temp, t_hero *hero)
 	while (data->map[len])
 		len++;
 	invert_map(data);
+	free_split(map_temp);
 	if (!verif_map(data, hero, len))
 		return (NULL);
 	return (data);

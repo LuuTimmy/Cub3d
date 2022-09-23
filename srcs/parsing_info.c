@@ -29,13 +29,33 @@ int	put_info(char *line, char **info, int ismap, t_data *data)
 	return (ismap);
 }
 
+char	*putmap2(char *line, char *fline, int *t)
+{
+	char	*fstr;
+
+	if (ft_strlen(line) == 1)
+		*t = 1;
+	else if (*t == 1 && ft_strlen(line) - count_char(line, 32) > 1)
+		*t = -1;
+	fstr = ft_strjoin(fline, line);
+	free(line);
+	free (fline);
+	fline = fstr;
+	if (*t == -1)
+		return (ft_error_char("Error: map need to be closed"));
+	if (!fline)
+		return (ft_error_char("Error: malloc failed"));
+	return (fline);
+}
+
 char	**putmap(t_data *data, int fd, char *fline)
 {
+	int		t;
 	int		temp;
 	char	*line;
-	char	*fstr;
 	char	**map_temp;
 
+	t = 0;
 	temp = 1;
 	line = 0;
 	while (line || temp)
@@ -44,14 +64,12 @@ char	**putmap(t_data *data, int fd, char *fline)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		fstr = ft_strjoin(fline, line);
-		if (!fstr)
-			return (ft_error_char("Error: malloc failed"));
-		free(line);
-		free (fline);
-		fline = fstr;
+		fline = putmap2(line, fline, &t);
+		if (!fline)
+			return (NULL);
 	}
 	map_temp = ft_split(fline, '\n');
+	free(fline);
 	if (!map_temp)
 		return (ft_error_char("Error: malloc failed"));
 	return (map_temp);

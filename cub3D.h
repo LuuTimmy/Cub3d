@@ -6,7 +6,7 @@
 /*   By: tluu <tluu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 11:12:20 by mdelforg          #+#    #+#             */
-/*   Updated: 2022/09/21 15:01:07 by tluu             ###   ########.fr       */
+/*   Updated: 2022/09/23 13:30:56 by tluu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,9 +171,9 @@ char	**search_map_info(int fd, t_data *data, char **info);
 void	*parsing_map(t_data *data, char **map_temp, t_hero *hero);
 int		parse_texture(char *newline, char *line, char *info, t_libx *libx);
 size_t	ft_strlcpy_cub(char *dest, const char *src, size_t size);
+int		put_hero(t_data *data, t_hero *hero, int i, int j);
 
 //parsing-utils;
-int		put_hero(t_data *data, t_hero *hero, int i, int j);
 int		verif_is_digit(char **str);
 size_t	ft_strlcpy_cub(char *dest, const char *src, size_t size);
 int		ft_atoi_v(const char *str, int *is_false);

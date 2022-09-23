@@ -6,12 +6,11 @@
 /*   By: tluu <tluu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 13:48:02 by mdelforg          #+#    #+#             */
-/*   Updated: 2022/09/21 10:40:07 by tluu             ###   ########.fr       */
+/*   Updated: 2022/09/23 13:19:26 by tluu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
-//				retirer so_long.h
 
 void	ft_camera_init(t_rcst *rcst)
 {

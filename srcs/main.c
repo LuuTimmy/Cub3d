@@ -6,7 +6,7 @@
 /*   By: tluu <tluu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 17:59:06 by mdelforg          #+#    #+#             */
-/*   Updated: 2022/09/21 15:31:12 by tluu             ###   ########.fr       */
+/*   Updated: 2022/09/23 13:31:25 by tluu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	main(int ac, char **av)
 	ft_mlx_init(&data, &libx, &img);
 	data.map = parse_file(av[1], &data, &hero);
 	if (!data.map)
-		ft_error("Error: Map");
+		return (0);
 	ft_textures_init(&libx);
 	mlx_do_key_autorepeaton(libx.mlx_ptr);
 	mlx_hook(libx.mlx_win, 17, 0L, ft_close, &data);
