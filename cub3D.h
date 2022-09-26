@@ -6,7 +6,7 @@
 /*   By: tluu <tluu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 11:12:20 by mdelforg          #+#    #+#             */
-/*   Updated: 2022/09/23 13:30:56 by tluu             ###   ########.fr       */
+/*   Updated: 2022/09/26 12:21:13 by tluu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,17 +94,17 @@ typedef struct s_img
 
 typedef struct s_libx
 {
-	void	*mlx_ptr;
-	void	*mlx_win;
-	t_img	txtr[4];
-    char	*txtr_w_north;
-    char	*txtr_w_south;
-    char	*txtr_w_east;
-    char	*txtr_w_west;
+	void			*mlx_ptr;
+	void			*mlx_win;
+	t_img			txtr[4];
+	char			*txtr_w_north;
+	char			*txtr_w_south;
+	char			*txtr_w_east;
+	char			*txtr_w_west;
 
 	unsigned int	texture_floor;
 	unsigned int	texture_ceiling;
-	t_img	*img;
+	t_img			*img;
 }	t_libx;
 
 typedef struct s_move

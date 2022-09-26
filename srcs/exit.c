@@ -6,7 +6,7 @@
 /*   By: tluu <tluu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 16:07:48 by mdelforg          #+#    #+#             */
-/*   Updated: 2022/09/23 13:07:12 by tluu             ###   ########.fr       */
+/*   Updated: 2022/09/26 11:02:55 by tluu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	ft_free_tab(char **tab)
 void	ft_error(char *str)
 {
 	printf("%s\n", str);
+	system("leaks cub3D");
 	exit(EXIT_FAILURE);
 	return ;
 }

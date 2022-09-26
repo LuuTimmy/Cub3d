@@ -1,16 +1,16 @@
-NO textures/barrel.xpm
+NO textures/csgo.xpm
 SO textures/stone.xpm
-WE textures/grass.xpm
+WE textures/wolf.xpm
 EA textures/metal.xpm
 
-F 220,100,0
+F 239,255,9
 C 225,30,0
 
 11111111111111
 10000000000001
 11111100111111
-      11
-11111100111111
+      111
+11111101111111
 1100000N111111
 11111010111111
 11111000111111

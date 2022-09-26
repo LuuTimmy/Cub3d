@@ -6,7 +6,7 @@
 /*   By: tluu <tluu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:29:31 by tluu              #+#    #+#             */
-/*   Updated: 2022/09/26 10:59:12 by tluu             ###   ########.fr       */
+/*   Updated: 2022/09/26 11:20:23 by tluu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ int	put_info(char *line, char **info, int ismap, t_data *data)
 		{
 			if (!ft_strncmp(new_line[0], info[i], ft_strlen(info[i]) + 1))
 			{
-				if (!parse_texture(new_line[1], line, info[i], data->libx))
-					return (-2);
 				ismap = 1;
+				if (!parse_texture(new_line[1], line, info[i], data->libx))
+					ismap = -2;
 				break ;
 			}
 			else

@@ -11,4 +11,5 @@ Sacha:
  - Init color du sol / plafond (pour dans ft-draw-line)
 
 
-//NORMI ERROR
+// NORMI ERROR
+// ENLEVER LES system("leakd cub3D");

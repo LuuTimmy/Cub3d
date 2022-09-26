@@ -6,7 +6,7 @@
 /*   By: tluu <tluu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:29:24 by tluu              #+#    #+#             */
-/*   Updated: 2022/09/23 14:29:25 by tluu             ###   ########.fr       */
+/*   Updated: 2022/09/26 12:45:31 by tluu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,44 +46,43 @@ int	put_color(char *color_rgb, unsigned int *color)
 	char	**color_split;
 
 	if (nword(color_rgb, ',') != 3 || count_char(color_rgb, ',' != 2))
-		return (0);
+		return (ft_error_int("wrong arg for color", 0));
 	color_split = ft_split(color_rgb, ',');
 	if (!color_split)
-		return (0);
+		return (ft_error_int("malloc failed", 0));
 	*color = parse_color(color_split);
 	if (*color == 0)
 	{
 		free_split(color_split);
-		return (0);
+		return (ft_error_int("wrong arg for color", 0));
 	}
 	free_split(color_split);
 	return (1);
 }
 
-int	parse_texture(char *newline, char *line, char *info, t_libx *lx)
+int	parse_texture(char *newline, char *line, char *i, t_libx *lx)
 {
 	int		temp;
 
 	if (nword(line, 32) != 2)
 		return (0);
-	if (!ft_strncmp(info, "NO", 3) && !lx->txtr_w_north)
+	if (!ft_strncmp(i, "NO", 3) && !lx->txtr_w_north)
 		temp = put_texture(newline, &lx->txtr_w_north);
-	else if (!ft_strncmp(info, "SO", 3)
-		&& !lx->txtr_w_south && lx->txtr_w_north)
+	else if (!ft_strncmp(i, "SO", 3) && !lx->txtr_w_south && lx->txtr_w_north)
 		temp = put_texture(newline, &lx->txtr_w_south);
-	else if (!ft_strncmp(info, "WE", 3) && !lx->txtr_w_west && lx->txtr_w_south)
+	else if (!ft_strncmp(i, "WE", 3) && !lx->txtr_w_west && lx->txtr_w_south)
 		temp = put_texture(newline, &lx->txtr_w_west);
-	else if (!ft_strncmp(info, "EA", 3) && !lx->txtr_w_east && lx->txtr_w_west)
+	else if (!ft_strncmp(i, "EA", 3) && !lx->txtr_w_east && lx->txtr_w_west)
 		temp = put_texture(newline, &lx->txtr_w_east);
-	else if (!ft_strncmp(info, "F", 2) && !lx->texture_floor && lx->txtr_w_east)
+	else if (!ft_strncmp(i, "F", 2) && !lx->texture_floor && lx->txtr_w_east)
 		temp = put_color(newline, &lx->texture_floor);
-	else if (!ft_strncmp(info, "C", 2)
+	else if (!ft_strncmp(i, "C", 2)
 		&& !lx->texture_ceiling && lx->texture_floor)
 		temp = put_color(newline, &lx->texture_ceiling);
 	else
-		return (0);
+		return (ft_error_int("Error: wrong information", 0));
 	if (!temp)
-		return (ft_error_int("Error: malloc failed", 0));
+		return (0);
 	return (1);
 }
 

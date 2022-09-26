@@ -6,7 +6,7 @@
 /*   By: tluu <tluu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:29:27 by tluu              #+#    #+#             */
-/*   Updated: 2022/09/23 14:29:28 by tluu             ###   ########.fr       */
+/*   Updated: 2022/09/26 11:05:14 by tluu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,9 @@ void	*parsing_map(t_data *data, char **map_temp, t_hero *hero)
 	invert_map(data);
 	free_split(map_temp);
 	if (!verif_map(data, hero, len))
+	{
+		free_split(data->map);
 		return (NULL);
+	}
 	return (data);
 }

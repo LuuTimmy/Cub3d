@@ -6,7 +6,7 @@
 /*   By: tluu <tluu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 17:55:56 by mdelforg          #+#    #+#             */
-/*   Updated: 2022/09/20 15:25:55 by tluu             ###   ########.fr       */
+/*   Updated: 2022/09/26 12:20:07 by tluu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	ft_draw_line(int x, int y, int draw, t_libx *libx)
 	int	color;
 
 	if (y == 0)
-		color = libx->texture_floor;
-	else
 		color = libx->texture_ceiling;
+	else
+		color = libx->texture_floor;
 	while (y < draw)
 	{
 		ft_my_put_pixel(libx->img, x, y, color);
