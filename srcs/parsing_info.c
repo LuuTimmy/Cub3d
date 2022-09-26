@@ -6,7 +6,7 @@
 /*   By: tluu <tluu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:29:31 by tluu              #+#    #+#             */
-/*   Updated: 2022/09/23 14:29:32 by tluu             ###   ########.fr       */
+/*   Updated: 2022/09/26 10:59:12 by tluu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ char	**search_map_info(int fd, t_data *data, char **info)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			return (NULL);
+			return (ft_error_char("Error: miss information"));
 		ismap = put_info(line, info, ismap, data);
 		if (ismap >= 0 || ismap == -2)
 			free(line);
